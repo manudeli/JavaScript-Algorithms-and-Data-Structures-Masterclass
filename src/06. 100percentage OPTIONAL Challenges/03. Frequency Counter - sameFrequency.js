@@ -1,16 +1,38 @@
+// Frequency Counter - sameFrequency
+/* 
+Write a function called sameFrequency. Given two positive integers,
+find out if the two numbers have the same frequency of digits
+ */
+
 function sameFrequency(num1, num2) {
-  const arrDigits1 = makeArrDigits(num1);
-  const arrDigits2 = makeArrDigits(num2);
+  const frequencyCounter1 = makeFrequencyCounterDigits(num1);
+  const frequencyCounter2 = makeFrequencyCounterDigits(num2);
 
-  console.log(arrDigits1, arrDigits2);
+  let result = true;
 
-  function makeArrDigits(num) {
-    return String(num)
+  for (let key in frequencyCounter1) {
+    if (frequencyCounter1[key] !== frequencyCounter2[key]) {
+      result = false;
+    }
+  }
+
+  return result;
+
+  function makeFrequencyCounterDigits(num) {
+    const FrequencyCounter = {};
+    String(num)
       .split("")
-      .map((num) => {
-        return Number(num);
+      .forEach((strNum) => {
+        FrequencyCounter[Number(strNum)] =
+          (FrequencyCounter[Number(strNum)] || 0) + 1;
       });
+    return FrequencyCounter;
   }
 }
 
-sameFrequency(182, 281);
+console.log(
+  sameFrequency(182, 281),
+  sameFrequency(34, 14),
+  sameFrequency(3589578, 5879385),
+  sameFrequency(22, 222)
+);
