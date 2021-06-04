@@ -23,6 +23,10 @@ class Student {
     });
     return sum / this.scores.length;
   }
+
+  static EnrollStudents() {
+    return "ENROLLING STUDENTS!";
+  }
 }
 
 let firstStudent = new Student("Jonghyeon", "Ko", 3);
@@ -45,3 +49,27 @@ secondStudent.addScore(30);
 secondStudent.addScore(70);
 console.log(secondStudent.scores);
 console.log(secondStudent.calculateAverage());
+
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  // only Class itself can use it
+  // e.g. Point.distance(a, b)
+  static distance(a, b) {
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+
+    return Math.hypot(dx, dy);
+  }
+}
+
+const p1 = new Point(5, 5);
+const p2 = new Point(10, 10);
+
+console.log(p1);
+
+console.log(Point.distance(p1, p2));
+console.log(Student.EnrollStudents());
