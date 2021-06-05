@@ -138,6 +138,18 @@ class SinglyLinkedList {
     }
     return currentNode;
   }
+
+  set(index, val) {
+    // Use your get function to find the specific node.
+    let nodeFound = this.get(index);
+    // If the node is not found, return false
+    if (!nodeFound) return false;
+    // If the node is found, set the value of that node to be the value passed to the function and return true
+    else {
+      nodeFound.val = val;
+      return true;
+    }
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -160,4 +172,9 @@ console.log(list);
 
 console.log(list.get(0));
 console.log(list.get(1));
+console.log(list);
+
+console.log(list.set(0, "itemSet"));
+console.log(list.set(-1, "itemSet"));
+console.log(list.set(6, "itemSet"));
 console.log(list);
