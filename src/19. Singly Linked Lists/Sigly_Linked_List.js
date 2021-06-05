@@ -57,6 +57,7 @@ class SinglyLinkedList {
     // 6. Return the linked list
     return this;
   }
+
   traverse() {
     let current = this.head;
     while (current) {
@@ -64,6 +65,7 @@ class SinglyLinkedList {
       current = current.next;
     }
   }
+
   pop() {
     // If there are no nodes in the list, return undefined
     if (this.length === 0) {
@@ -91,6 +93,7 @@ class SinglyLinkedList {
     // Return the value of the node removed
     return current;
   }
+
   shift() {
     // If there are no nodes, return undefined
     if (this.length === 0) return undefined;
@@ -104,6 +107,26 @@ class SinglyLinkedList {
     // Return the value of the node removed
     return currentHead;
   }
+
+  // This function should accept a value
+  unshift(val) {
+    // Create a new node using the value passed to the function
+    let newNode = new Node(val);
+    // If there is no head property on the list, set the head and tail to be the newly created node
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      // Otherwise set the newly created node's next property to be the current head property on the list
+      newNode.next = this.head;
+      // Set the head property on the list to be that newly created node
+      this.head = newNode;
+    }
+    // Increment the length of the list by 1
+    this.length++;
+    // Return the linked list
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -115,6 +138,12 @@ console.log(list);
 list.traverse();
 console.log(list.pop());
 console.log(list);
+
 console.log(list.shift());
 console.log(list.shift());
 console.log(list);
+
+console.log(list.unshift("jongkyky"));
+console.log(list.head === list.tail);
+console.log(list.unshift("jongkyky22"));
+console.log(list.head === list.tail);
