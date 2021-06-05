@@ -24,6 +24,14 @@ class Node {
   }
 }
 
+let first = new Node("Hi");
+first.next = new Node("there");
+first.next.next = new Node("how");
+first.next.next.next = new Node("are");
+first.next.next.next.next = new Node("you");
+
+console.log(first);
+
 class SinglyLinkedList {
   constructor() {
     this.head = null;
@@ -31,7 +39,6 @@ class SinglyLinkedList {
     this.length = 0;
   }
 
-  // Pushing pseudo code
   // 1. This function should accept a value
   push(val) {
     // 2. Create a new node using the value passed to the function
@@ -50,18 +57,52 @@ class SinglyLinkedList {
     // 6. Return the linked list
     return this;
   }
+  traverse() {
+    let current = this.head;
+    while (current) {
+      console.log(current.val);
+      current = current.next;
+    }
+  }
+  pop() {
+    // If there are no nodes in the list, return undefined
+    if (this.length === 0) {
+      return undefined;
+    }
+    let current = this.head;
+    let newTail = current;
+    // Loop through the list until you reach the tail
+    while (current.next) {
+      // Set the next property of the 2nd to last node to be null
+      newTail = current;
+      current = current.next;
+    }
+    // Set the tail to be the 2nd to last node
+    this.tail = newTail;
+    this.tail.next = null;
+    // Decrement the length of the list by 1
+    this.length--;
+
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    // Return the value of the node removed
+    return current;
+  }
 }
-
-let first = new Node("Hi");
-first.next = new Node("there");
-first.next.next = new Node("how");
-first.next.next.next = new Node("are");
-first.next.next.next.next = new Node("you");
-
-console.log(first);
 
 let list = new SinglyLinkedList();
 list.push("HELLO");
 list.push("GOODBYE");
-list.push("MY NAME IS");
+list.push("!");
+console.log(list);
+
+list.traverse();
+console.log(list.pop());
+console.log(list);
+console.log(list.pop());
+console.log(list.pop());
+console.log(list.pop());
 console.log(list);
