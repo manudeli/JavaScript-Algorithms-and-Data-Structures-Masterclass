@@ -150,6 +150,19 @@ class SinglyLinkedList {
       return true;
     }
   }
+
+  insert(index, val) {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) return !!this.push(val);
+    if (index === 0) return !!this.unshift(val);
+    let newNode = new Node(val);
+    let prev = this.get(index - 1);
+    let temp = prev.next;
+    prev.next = newNode;
+    newNode.next = temp;
+    this.length++;
+    return true;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -178,3 +191,7 @@ console.log(list.set(0, "itemSet"));
 console.log(list.set(-1, "itemSet"));
 console.log(list.set(6, "itemSet"));
 console.log(list);
+
+console.log(list.insert(6, "FIRST INSERT"));
+console.log(list.insert(-2, "FIRST INSERT"));
+console.log(list.insert(2, "FIRST INSERT"));
