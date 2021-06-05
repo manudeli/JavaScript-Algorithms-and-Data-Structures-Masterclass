@@ -127,6 +127,17 @@ class SinglyLinkedList {
     // Return the linked list
     return this;
   }
+
+  get(index) {
+    // If the index is less than zero or greater than or equal to the length of the list, return null
+    if (index < 0 || index >= this.length) return null;
+    // Loop through the list until you reach the index and return the node at that specific index
+    let currentNode = this.head;
+    for (let i = 0; i < index; i++) {
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -143,7 +154,10 @@ console.log(list.shift());
 console.log(list.shift());
 console.log(list);
 
-console.log(list.unshift("jongkyky"));
-console.log(list.head === list.tail);
-console.log(list.unshift("jongkyky22"));
-console.log(list.head === list.tail);
+console.log(list.unshift("jongkykySecond"));
+console.log(list.unshift("jongkykyFirst"));
+console.log(list);
+
+console.log(list.get(0));
+console.log(list.get(1));
+console.log(list);
