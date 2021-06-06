@@ -72,6 +72,22 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+    let current;
+    if (index <= this.length / 2) {
+      current = this.head;
+      for (let i = 0; i < index; i++) {
+        current = current.next;
+      }
+    } else {
+      current = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        current = current.prev;
+      }
+    }
+    return current;
+  }
 }
 
 list = new DoublyLinkedList();
@@ -81,6 +97,9 @@ list.push(15);
 list.push(16);
 list.push(17);
 list.push(18);
+list.push(19);
+list.push(20);
+list.push(21);
 console.log(list);
 
 console.log(list.pop());
@@ -90,3 +109,8 @@ console.log(list.shift());
 console.log(list);
 
 console.log(list.unshift("unshiftedItem"));
+
+console.log(list);
+console.log(list.get(1));
+console.log(list.get(6));
+//["unsh", 15, 16, 17, 18, 19, 20 ]
