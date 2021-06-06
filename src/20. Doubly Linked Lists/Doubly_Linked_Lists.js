@@ -88,6 +88,11 @@ class DoublyLinkedList {
     }
     return current;
   }
+  set(index, val) {
+    let foundNode = this.get(index);
+    if (foundNode !== null) return !!(foundNode.val = val);
+    else return false;
+  }
 }
 
 list = new DoublyLinkedList();
@@ -113,4 +118,6 @@ console.log(list.unshift("unshiftedItem"));
 console.log(list);
 console.log(list.get(1));
 console.log(list.get(6));
-//["unsh", 15, 16, 17, 18, 19, 20 ]
+
+console.log(list.set(1, "setItem"));
+console.log(list);
