@@ -52,11 +52,34 @@ class BinarySearchTree {
     }
     return false;
   }
+  // Breadth First Search Solution
+  BFS() {
+    let node = this.root,
+      data = [],
+      queue = [];
+
+    queue.push(node);
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+    return data;
+  }
 }
 
 var tree = new BinarySearchTree();
 
-console.log(tree.insert(8), tree.insert(9), tree.insert(10), tree.insert(10));
+console.log(
+  tree.insert(8),
+  tree.insert(19),
+  tree.insert(10),
+  tree.insert(13),
+  tree.insert(101),
+  tree.insert(10)
+);
 console.log(tree);
 console.log(tree.find(8));
 console.log(tree.find(1));
+console.log(tree.BFS());
