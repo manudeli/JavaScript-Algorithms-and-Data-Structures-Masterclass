@@ -67,6 +67,17 @@ class BinarySearchTree {
     }
     return data;
   }
+  // Depth First Preorder
+  DFSPreOrder() {
+    let data = [];
+    function traverse(node) {
+      data.push(node.value);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+    return data;
+  }
 }
 
 var tree = new BinarySearchTree();
@@ -83,3 +94,4 @@ console.log(tree);
 console.log(tree.find(8));
 console.log(tree.find(1));
 console.log(tree.BFS());
+console.log(tree.DFSPreOrder());
