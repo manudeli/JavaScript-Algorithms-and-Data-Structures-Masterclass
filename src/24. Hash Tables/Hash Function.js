@@ -31,15 +31,47 @@ class HashTable {
     }
     return undefined;
   }
+  keys() {
+    let valuesArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!valuesArr.includes(this.keyMap[i][j][0]))
+            valuesArr.push(this.keyMap[i][j][0]);
+        }
+      }
+    }
+    return valuesArr;
+  }
+  values() {
+    let valuesArr = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!valuesArr.includes(this.keyMap[i][j][1]))
+            valuesArr.push(this.keyMap[i][j][1]);
+        }
+      }
+    }
+    return valuesArr;
+  }
 }
 
 let ht = new HashTable();
-console.log(ht.set("hello world", "goodbye!!"));
-console.log(ht.set("dogs", "are cool"));
-console.log(ht.set("cats", "are fine"));
-console.log(ht.set("i love", "pizza"));
-console.log(ht.set("hi", "bye"));
+ht.set("hello world", "goodbye!!");
+ht.set("dogs", "are cool");
+ht.set("cats", "are fine");
+ht.set("i love", "pizza");
+// set different key, same value
+ht.set("hi", "bye");
+ht.set("hello", "bye");
 
 console.log(ht);
 console.log(ht.get("hi"));
 console.log(ht.get("i love"));
+
+console.log(ht.keys());
+console.log(ht.values());
+ht.keys().forEach(function (key) {
+  console.log(ht.get(key));
+});
