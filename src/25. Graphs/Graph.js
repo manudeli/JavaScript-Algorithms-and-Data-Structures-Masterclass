@@ -24,26 +24,64 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+  depthFirstRecursive(start) {
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    (function dfs(vertex) {
+      if (!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacencyList[vertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          return dfs(neighbor);
+        }
+      });
+    })(start);
+
+    return result;
+  }
 }
 
-let g = new Graph();
-g.addVertex("Tokyo");
+let cities = new Graph();
+cities.addVertex("Tokyo");
 // Double addVertex not working
-g.addVertex("Tokyo");
+cities.addVertex("Tokyo");
 
-g.addVertex("Hong Kong");
-g.addVertex("San Francisco");
-g.addVertex("Dallas");
-g.addVertex("Aspen");
+cities.addVertex("Hong Kong");
+cities.addVertex("San Francisco");
+cities.addVertex("Dallas");
+cities.addVertex("Aspen");
 
-g.addEdge("Dallas", "Tokyo");
-g.addEdge("Dallas", "Aspen");
-g.addEdge("Hong Kong", "Aspen");
-g.addEdge("Hong Kong", "Tokyo");
-console.log(g.adjacencyList);
+cities.addEdge("Dallas", "Tokyo");
+cities.addEdge("Dallas", "Aspen");
+cities.addEdge("Hong Kong", "Aspen");
+cities.addEdge("Hong Kong", "Tokyo");
+console.log(cities.adjacencyList);
 
-g.removeEdge("Dallas", "Tokyo");
+cities.removeEdge("Dallas", "Tokyo");
 
-console.log(g.adjacencyList);
-g.removeVertex("Hong Kong");
-console.log(g.adjacencyList);
+console.log(cities.adjacencyList);
+cities.removeVertex("Hong Kong");
+console.log(cities.adjacencyList);
+
+let g = new Graph();
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+
+g.addEdge("A", "B");
+g.addEdge("A", "C");
+g.addEdge("B", "D");
+g.addEdge("C", "E");
+g.addEdge("D", "E");
+g.addEdge("D", "F");
+g.addEdge("E", "F");
+
+console.log(g.depthFirstRecursive("A"));
+console.log(g.depthFirstRecursive("B"));
+console.log(g.depthFirstRecursive("C"));
