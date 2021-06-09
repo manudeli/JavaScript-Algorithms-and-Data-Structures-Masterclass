@@ -42,6 +42,26 @@ class Graph {
 
     return result;
   }
+  depthFirstIterative(start) {
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+    while (stack.length) {
+      console.log("stack", stack);
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 let cities = new Graph();
@@ -85,3 +105,5 @@ g.addEdge("E", "F");
 console.log(g.depthFirstRecursive("A"));
 console.log(g.depthFirstRecursive("B"));
 console.log(g.depthFirstRecursive("C"));
+
+console.log(g.depthFirstIterative("A"));
