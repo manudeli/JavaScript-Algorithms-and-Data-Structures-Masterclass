@@ -62,6 +62,26 @@ class Graph {
     }
     return result;
   }
+  breadthFirst(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    visited[start] = true;
+    while (queue.length) {
+      console.log("queue", queue);
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
 }
 
 let cities = new Graph();
@@ -107,3 +127,9 @@ console.log(g.depthFirstRecursive("B"));
 console.log(g.depthFirstRecursive("C"));
 
 console.log(g.depthFirstIterative("A"));
+console.log(g.depthFirstIterative("B"));
+console.log(g.depthFirstIterative("C"));
+
+console.log(g.breadthFirst("A"));
+console.log(g.breadthFirst("B"));
+console.log(g.breadthFirst("C"));
